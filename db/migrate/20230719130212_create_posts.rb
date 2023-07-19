@@ -4,8 +4,8 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :text
       t.timestamps
-      t.integer :commentsCounter
-      t.integer :likesCounter
+      t.integer :comments_counter
+      t.integer :likes_counter
     end
   end
 end
