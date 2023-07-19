@@ -13,6 +13,10 @@ RSpec.describe User, type: :model do
       expect(subject.posts_counter).to be_a(Integer)
       expect(subject.posts_counter).to be >= 0
     end
+
+    it 'return return_three_most_recent_posts' do
+      expect(subject.return_three_most_recent_posts).to eq(subject.posts.order(created_at: :desc).limit(3))
+    end
   end
   context 'testing user with values' do
     subject(:user) { User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
