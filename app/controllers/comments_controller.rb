@@ -1,5 +1,5 @@
 class CommentsController < ActionController::Base
-	def create
+  def create
     @comment = Comment.new(comment_params)
     @comment.save
     redirect_to comments_path
