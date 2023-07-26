@@ -1,19 +1,10 @@
-class LikesController < ActionController::Base
+class LikesController < ApplicationController
   def create
-    @like = Like.new(like_params)
-    @like.save
-    redirect_to likes_path
-  end
+    @user = current_user
+    @post = Post.find(params[:post_id])
+    @like = Like.new(author_id: @user.id, post_id: @post.id)
+    return unless @like.save
 
-  def destroy
-    @like = Like.find(params[:id])
-    @like.destroy
-    redirect_to likes_path
-  end
-
-  private
-
-  def like_params
-    params.require(:like).permit(:author_id, :post_id)
+    redirect_to user_post_path(@user.id, @post)
   end
 end

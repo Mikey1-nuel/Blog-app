@@ -13,5 +13,8 @@
 <%end%>
 <%end%>
 </ul>
+
 <div class='content-view-all-post-btn'>
-<%= link_to "View all posts", user_posts_path(@user), class: 'view-all-post-btn' %></div>
+	<%= link_to "Add a Post...", new_user_post_path(@user), class: 'post_btn' %>
+	<%= link_to "View all posts", user_posts_path(@user), class: 'view-all-post-btn' %>
+</div>

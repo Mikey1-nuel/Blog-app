@@ -1,10 +1,16 @@
 <h1>Blog App</h1>
 
-<article class='no-posts'>
-  <div class='post-title' >
-  <h1><%=@post.title%> by <%=@post.author.name%><h1>
-  <div class='post-count-best'>Comments: <%=@post.comments_counter%>, Likes:<%=@post.likes_counter%></div>
+<main class='user-cont2'>
+  <div class="post-in-show">
+    <div class="post-in-show2">
+      <h3><%= @post.title %> by <%= @post.author.name %></h3>
+      <p>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></p>
+    </div>
+    <p><%= @post.text %></p>
   </div>
-  <div><%=@post.text%></div>
-  <%= render 'partials/comment', comments: @post.return_five_most_recent_comments %>
-</article>
+  <div class="comment-container">
+    <% @post.comments.each do |comment| %>
+      <%= render 'partials/comment', comment: comment %>
+    <% end %>
+  </div>
+</main>
