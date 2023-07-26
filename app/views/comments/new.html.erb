@@ -1,0 +1,9 @@
+<%= form_with model: [@user, @post, @comment], class:'form', url: user_post_comments_path do |f| %>
+
+    <%= f.label :text, required: true, class: 'comment_label' %>
+    <%= f.text_field :text, required: true, class:'form_text' %>
+
+
+    <%= f.submit "Comment", class: 'comment_btn' %>
+
+<% end %>

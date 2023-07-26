@@ -1,28 +1,32 @@
-class PostsController < ActionController::Base
+class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = Post.where(author_id: params[:user_id])
+    @posts = Post.includes(comments: [:author]).where(author_id: params[:user_id])
   end
 
   def show
-    @post = Post.where(author_id: params[:user_id], id: params[:id]).first
+    @post = Post.find(params[:id])
+  end
+
+  def new
+    @user = current_user
+    @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.save
-    redirect_to posts_path
-  end
-
-  def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    @user = current_user
+    @post = @user.posts.new(post_params)
+    if @post.save
+      redirect_to user_post_path(@user, @post)
+    else
+      flash.now[:errors] = 'Invalid post!'
+      render :new
+    end
   end
 
   private
 
   def post_params
-    paramst.require(:post).permit(:author_id)
+    params.require(:post).permit(:title, :text)
   end
 end
