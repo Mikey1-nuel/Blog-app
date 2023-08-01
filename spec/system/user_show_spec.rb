@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User show page', type: :feature do
-	
   user = User.create(name: 'John', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
   Post.create(title: 'First post', text: 'This is my first post', author_id: user.id)
   Post.create(title: 'Second post', text: 'This is my second post', author_id: user.id)
