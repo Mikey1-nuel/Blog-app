@@ -28,32 +28,32 @@ RSpec.describe 'User show page', type: :feature do
       expect(page).to have_content user.bio
     end
 
-	it "should show the user's first 3 posts" do
-		user_posts = user.return_three_most_recent_posts
+    it "should show the user's first 3 posts" do
+      user_posts = user.return_three_most_recent_posts
 
-		user_posts[0..2].each do |post|
-		  expect(page).to have_content post.title
-		end
+      user_posts[0..2].each do |post|
+        expect(page).to have_content post.title
+      end
 
-		user_posts[3..-1].each do |post|
-		  expect(page).not_to have_content post.title
-		end
-	  end
+      user_posts[3..-1].each do |post|
+        expect(page).not_to have_content post.title
+      end
+    end
 
-	  it 'should display a button that lets me view all of a user\'s posts' do
-		expect(page).to have_link('View all posts')
-	  end
-	
-	  describe 'interactions on page' do
-		it "redirects to post's show page when post is clicked" do
-		  click_link(href: user_post_path(user, last_post))
-		  expect(page).to have_current_path(user_post_path(user, last_post))
-		end
-	
-		it "redirects to post's index page when 'View all posts' clicked" do
-		  click_link('View all posts')
-		  expect(page).to have_current_path(user_posts_path(user))
-		end
-	  end
+    it 'should display a button that lets me view all of a user\'s posts' do
+      expect(page).to have_link('View all posts')
+    end
+
+    describe 'interactions on page' do
+      it "redirects to post's show page when post is clicked" do
+        click_link(href: user_post_path(user, last_post))
+        expect(page).to have_current_path(user_post_path(user, last_post))
+      end
+
+      it "redirects to post's index page when 'View all posts' clicked" do
+        click_link('View all posts')
+        expect(page).to have_current_path(user_posts_path(user))
+      end
+    end
   end
 end
