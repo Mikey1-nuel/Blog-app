@@ -10,6 +10,7 @@ RSpec.describe 'User index page', type: :feature do
   before :each do
     visit users_path
   end
+
   describe "page's content" do
     it "should show the user's name" do
       users.each { |user| expect(page).to have_content user.name }
