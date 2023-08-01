@@ -65,5 +65,9 @@ RSpec.describe 'Post index page', type: :feature do
       click_link(href: user_post_path(user, first_post))
       expect(page).to have_current_path(user_post_path(user, first_post))
     end
+
+    it 'has a section pagination if there are more posts' do
+      assert page.has_css?('div.pagination')
+    end
   end
 end
