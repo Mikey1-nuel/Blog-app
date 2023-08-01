@@ -35,7 +35,7 @@ RSpec.describe 'User show page', type: :feature do
         expect(page).to have_content post.title
       end
 
-      user_posts[3..-1].each do |post|
+      user_posts[3..].each do |post|
         expect(page).not_to have_content post.title
       end
     end
