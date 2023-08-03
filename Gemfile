@@ -75,6 +75,8 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'devise'
 
+gem 'cancancan'
+
 group :development, :test do
   gem 'capybara'
   gem 'rails-controller-testing'
