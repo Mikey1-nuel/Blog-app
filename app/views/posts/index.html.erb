@@ -3,6 +3,8 @@
   <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
 </div>
 
+<%= button_to("Home", root_path, method: :get) %>
+
 <%= render 'partials/user', user: @user %>
 <main class="post-index">
   <% @posts.reverse_each do |post| %>
@@ -20,8 +22,14 @@
       <h3>Comments</h3>
         <% post.return_five_most_recent_comments.reverse_each do |comment| %>
           <%= render 'partials/comment', comment: comment %>
+        <% if can? :destroy, comment %>
+          <%= form_for [@user, post, comment], url: user_post_comment_path(post.author, post, comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } do |f| %>
+            <%= f.submit "Delete Comment" %>
+          <% end %>
+        <% end %>
         <% end %>
       </div>
+
     </div>
   <% end %>
   <div class='pagination'>Pagination</div>
