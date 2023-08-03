@@ -1,4 +1,7 @@
-<h1>Blog App</h1>
+<div class='header'>
+  <h1>Blog App</h1>
+  <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
+</div>
 
 <%= render 'partials/user', user: @user %>
 <main class="post-index">
@@ -14,6 +17,7 @@
       </div>
 
       <div class="comment-container">
+      <h3>Comments</h3>
         <% post.return_five_most_recent_comments.reverse_each do |comment| %>
           <%= render 'partials/comment', comment: comment %>
         <% end %>
