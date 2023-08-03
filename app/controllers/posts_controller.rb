@@ -26,7 +26,12 @@ class PostsController < ApplicationController
     end
   end
 
-  
+  def destroy
+    @post = @comment.post
+    @user = @post.author
+    @post.destroy
+    redirect_to user_posts_path(@user), notice: 'Post was successfully deleted'
+  end
 
   private
 
