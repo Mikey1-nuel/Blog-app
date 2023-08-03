@@ -73,6 +73,8 @@ end
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'devise'
+
 group :development, :test do
   gem 'capybara'
   gem 'rails-controller-testing'
