@@ -27,10 +27,17 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = @comment.post
+    @post = Post.find(params[:id])
     @user = @post.author
-    @post.destroy
-    redirect_to user_posts_path(@user), notice: 'Post was successfully deleted'
+
+    Comment.where(post_id: @post.id).destroy_all # Delete associated comments
+
+    if @post.destroy
+      redirect_to user_posts_path(@user), notice: 'Post was successfully deleted'
+    else
+      flash.now[:alert] = 'Failed to delete post.'
+      render :show
+    end
   end
 
   private

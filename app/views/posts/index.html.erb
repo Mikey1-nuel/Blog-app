@@ -1,9 +1,10 @@
 <div class='header'>
   <h1>Blog App</h1>
-  <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
+  <div class='button-cont'>
+	  <%= button_to("Home", root_path, method: :get, class: 'log-out') %>
+	  <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
+  </div>
 </div>
-
-<%= button_to("Home", root_path, method: :get) %>
 
 <%= render 'partials/user', user: @user %>
 <main class="post-index">

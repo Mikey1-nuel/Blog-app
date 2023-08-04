@@ -1,11 +1,14 @@
 <div class='header'>
   <h1>Blog App</h1>
-  <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
+  <div class='button-cont'>
+	<%= button_to("Home", root_path, method: :get, class: 'log-out') %>
+	<%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
+  </div>
 </div>
 
-<%= button_to("Home", root_path, method: :get) %>
-<%= render 'partials/user', user: @user%>
-<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+<div class=''>
+	<%= render 'partials/user', user: @user%>
+</div>
 <div class='bio'><%=@user.bio%></div>
 <ul class='user-post-list'>
 <%if @user.return_three_most_recent_posts.empty?%>

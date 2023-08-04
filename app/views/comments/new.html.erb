@@ -1,3 +1,11 @@
+<div class='header'>
+  <h1>Blog App</h1>
+  <div class='button-cont'>
+	<%= button_to("Home", root_path, method: :get, class: 'log-out') %>
+	<%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'log-out') %>
+  </div>
+</div>
+
 <%= form_with model: [@user, @post, @comment], class:'form', url: user_post_comments_path do |f| %>
 
     <%= f.label :text, required: true, class: 'comment_label' %>
