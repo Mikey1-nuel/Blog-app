@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource except: [:index, :show]
+  load_and_authorize_resource except: %i[index show]
 
   def index
     @user = User.find(params[:user_id])
@@ -29,9 +29,9 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @user = @post.author
-  
+
     Comment.where(post_id: @post.id).destroy_all # Delete associated comments
-  
+
     if @post.destroy
       redirect_to user_posts_path(@user), notice: 'Post was successfully deleted'
     else
